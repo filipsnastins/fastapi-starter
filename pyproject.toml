@@ -1,0 +1,84 @@
+[tool.poetry]
+name = "fastapi-starter"
+version = "0.78.0"
+description = ""
+authors = ["Filips Nastins <nastinsfilips@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+SQLAlchemy = {extras = ["mypy"], version = "^1.4.31"}
+asgi-correlation-id = "^1.1.2"
+fastapi = {extras = ["all"], version = "0.78.0"}
+gunicorn = "^20.1.0"
+psycopg2 = "^2.9.3"
+sentry-sdk = "^1.5.4"
+structlog = "^21.5.0"
+
+[tool.poetry.dev-dependencies]
+autoflake = "^1.4"
+bandit = "^1.7.4"
+black = "^22.1"
+colorama = "^0.4.4"
+flake8 = "^4.0.1"
+isort = "^5.10.1"
+mypy = "^0.931"
+pre-commit = "^2.17.0"
+pydocstyle = "^6.1.1"
+pylint = "^2.12.2"
+pytest = "^7.0.1"
+pytest-cov = "^3.0.0"
+
+[tool.poetry.scripts]
+hooks = "fastapi_starter.util.dev_scripts:hooks"
+format = "fastapi_starter.util.dev_scripts:format"
+lint = "fastapi_starter.util.dev_scripts:lint"
+test = "fastapi_starter.util.dev_scripts:test"
+test-cov-term = "fastapi_starter.util.dev_scripts:test_cov_term"
+test-cov-html = "fastapi_starter.util.dev_scripts:test_cov_html"
+test-ci = "fastapi_starter.util.dev_scripts:test_ci"
+export-test-results = "fastapi_starter.util.dev_scripts:export_test_results"
+export-dist = "fastapi_starter.util.dev_scripts:export_dist"
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+
+[tool.pydocstyle]
+add_ignore = [
+    # Ignore Missing Docstrings
+    "D1",
+    # Google Convention
+    "D203",
+    "D204",
+    "D213",
+    "D215",
+    "D400",
+    "D401",
+    "D404",
+    "D406",
+    "D407",
+    "D408",
+    "D409",
+    "D413",
+]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+norecursedirs = [
+    ".git",
+    ".venv",
+    "__pycache__",
+    ".mypy_cache",
+    ".pytest_cache"
+]
+# For pytest caplog to pick up structlog logs; pytest live-logs
+log_cli_level = "INFO"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
