@@ -6,7 +6,7 @@ authors = ["Filips Nastins <nastinsfilips@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-SQLAlchemy = {extras = ["mypy"], version = "^1.4.31"}
+SQLAlchemy = {extras = ["mypy"], version = "^1.4.40"}
 asgi-correlation-id = "^1.1.2"
 fastapi = {extras = ["all"], version = "0.78.0"}
 gunicorn = "^20.1.0"
